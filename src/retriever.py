@@ -1,21 +1,24 @@
 import faiss
 import numpy as np
 
-def create_vector_store(embeddings):
 
-    dimension = embeddings.shape[1]
+class VectorStore:
 
-    index = faiss.IndexFlatL2(dimension)
+    def __init__(self, embeddings, texts):
 
-    index.add(np.array(embeddings))
+        self.texts = texts
 
-    return index
+        dimension = embeddings.shape[1]
+
+        self.index = faiss.IndexFlatL2(dimension)
+
+        self.index.add(np.array(embeddings))
 
 
-def retrieve(query_embedding, index, chunks, k=3):
+    def search(self, query_embedding, k=3):
 
-    distances, indices = index.search(query_embedding, k)
+        distances, indices = self.index.search(query_embedding, k)
 
-    results = [chunks[i] for i in indices[0]]
+        results = [self.texts[i] for i in indices[0]]
 
-    return results
+        return results
