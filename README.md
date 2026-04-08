@@ -1,6 +1,4 @@
-.
-
-📄 RAG System — Chat With Your PDF
+# 📄 RAG System — Chat With Your PDF
 
 An AI-powered Retrieval-Augmented Generation (RAG) system that allows users to upload a PDF document and interact with it through natural language queries.
 
